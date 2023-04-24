@@ -29,15 +29,15 @@ export function isMetadataExtension(file: string|vscode.TextDocument): boolean
 /**
  * Returns the name of the yaml property for the modified date
  */
-export function getModifiedPropertyName(): string
+export function getModifiedFieldName(): string
 {
-    return config().get<string>('gitjournal.metadata.modifiedPropertyName') ?? 'modified';
+    return config().get<string>('gitjournal.metadata.modifiedFieldName') ?? 'modified';
 }
 
 /**
  * Returns the name of the yaml property for the created date
  */
-export function getCreatedPropertyName(): string
+export function getCreatedFieldName(): string
 {
-    return config().get<string>('gitjournal.metadata.createdPropertyName') ?? 'modified';
+    return config().get<string>('gitjournal.metadata.createdFieldName') ?? 'modified';
 }

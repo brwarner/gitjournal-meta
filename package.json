@@ -39,15 +39,15 @@
           ],
           "description": "File extensions to add modified metadata to on save"
         },
-        "gitjournal.metadata.modifiedPropertyName": {
+        "gitjournal.metadata.modifiedFieldName": {
           "type": "string",
           "default": "modified",
-          "description": "Name of the YAML header property to save the modified date in"
+          "description": "Name of the YAML header field to save the modified date in"
         },
-        "gitjournal.metadata.createdPropertyName": {
+        "gitjournal.metadata.createdFieldName": {
           "type": "string",
           "default": "created",
-          "description": "Name of the YAML header property to save the created date in"
+          "description": "Name of the YAML header field to save the created date in"
         }
       }
     }

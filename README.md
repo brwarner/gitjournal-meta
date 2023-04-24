@@ -18,8 +18,8 @@ The names of these fields and the file extensions they'll be added to can be con
 
 * `gitjournal.metadata.on` is the extension enabled (best to set this on a workspace-by-workspace basis)
 * `gitjournal.metadata.extensions` array of extensions to operate on (default is just `md` files)
-* `gitjournal.metadata.modifiedPropertyName` what to name the `modified` field in YAML
-* `gitjournal.metadata.createdPropertyName` what to name the `created` field in YAML
+* `gitjournal.metadata.modifiedFieldName` what to name the `modified` field in YAML
+* `gitjournal.metadata.createdFieldName` what to name the `created` field in YAML
 
 ## Known Issues
 

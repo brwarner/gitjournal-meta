@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { parseMarkdownDocument, writeYamlHeaderIntoDocument } from './markdown';
-import { getCreatedPropertyName, getModifiedPropertyName, isMetadataExtension, isMetadataOn } from './config';
+import { getCreatedFieldName, getModifiedFieldName, isMetadataExtension, isMetadataOn } from './config';
 import * as moment from 'moment';
 import { getCreatedMoment } from './creation';
 
@@ -17,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 		
 		// Write it into the document header
 		const { header } = parseMarkdownDocument(editor.document);
-		header[getCreatedPropertyName()] = formattedCreatedDate;
+		header[getCreatedFieldName()] = formattedCreatedDate;
 		writeYamlHeaderIntoDocument(editor.document, header);
 
 	});
@@ -25,8 +25,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	// Register a handler to run when we're about to save a text document
 	subscription = vscode.workspace.onWillSaveTextDocument(willSaveTextDocumentEvent => {
-		const MODIFIED = getModifiedPropertyName();
-		const CREATED = getCreatedPropertyName();
+		const MODIFIED = getModifiedFieldName();
+		const CREATED = getCreatedFieldName();
 		const document = willSaveTextDocumentEvent.document;
 
 		// Don't bother on non-modified documents
