@@ -1,6 +1,6 @@
 {
   "name": "gitjournal-metadata",
-  "displayName": "gitjournal-metadata",
+  "displayName": "GitJournal Metadata",
   "description": "Visual Studio Code extension that automatically updates gitjournal metadata on notes",
   "version": "0.0.1",
   "publisher": "brwarner",
