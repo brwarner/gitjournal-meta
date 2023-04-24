@@ -2,7 +2,7 @@
 
 A simple extension that adds the same created/modified YAML metadata to markdown files as you work.
 
-By default the extension is turned off. Enable it with `gitjournal.metadata.on` in your workspace.
+By default the extension is turned off. Enable it with `gitjournal.metadata.enable` in your workspace.
 
 ## Features
 
@@ -16,7 +16,7 @@ The names of these fields and the file extensions they'll be added to can be con
 
 ## Extension Settings
 
-* `gitjournal.metadata.on` is the extension enabled (best to set this on a workspace-by-workspace basis)
+* `gitjournal.metadata.enable` is the extension enabled (best to set this on a workspace-by-workspace basis)
 * `gitjournal.metadata.extensions` array of extensions to operate on (default is just `md` files)
 * `gitjournal.metadata.modifiedFieldName` what to name the `modified` field in YAML
 * `gitjournal.metadata.createdFieldName` what to name the `created` field in YAML

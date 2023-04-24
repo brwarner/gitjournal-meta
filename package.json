@@ -24,7 +24,7 @@
     "configuration": {
       "title": "GitJournal Metadata",
       "properties": {
-        "gitjournal.metadata.on": {
+        "gitjournal.metadata.enable": {
           "type": "boolean",
           "default": false,
           "description": "If on, automatically add modified metadata to notes on save"

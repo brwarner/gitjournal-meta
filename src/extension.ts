@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { parseMarkdownDocument, writeYamlHeaderIntoDocument } from './markdown';
-import { getCreatedFieldName, getModifiedFieldName, isMetadataExtension, isMetadataOn } from './config';
+import { getCreatedFieldName, getModifiedFieldName, isMetadataExtension, isMetadataEnabled } from './config';
 import * as moment from 'moment';
 import { getCreatedMoment } from './creation';
 
@@ -33,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
 		if(!document.isDirty) { return; }
 
 		// Ignore if we're not on
-		if(!isMetadataOn() || !isMetadataExtension(document)) { return; }
+		if(!isMetadataEnabled() || !isMetadataExtension(document)) { return; }
 
 		// Parse document
 		const { header } = parseMarkdownDocument(document);

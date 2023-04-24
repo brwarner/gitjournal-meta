@@ -9,9 +9,9 @@ function config()
 /**
  * Returns true if the extension is on for this workspace
  */
-export function isMetadataOn(): boolean
+export function isMetadataEnabled(): boolean
 {
-	return config().get<boolean>('gitjournal.metadata.on') ?? false;
+	return config().get<boolean>('gitjournal.metadata.enable') ?? false;
 }
 
 /**
