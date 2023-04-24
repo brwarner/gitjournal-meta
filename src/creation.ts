@@ -3,6 +3,44 @@ import * as moment from 'moment';
 import * as git from 'git-date-extractor';
 import * as fs from 'fs';
 
+export interface StampInfo
+{
+    created: moment.Moment;
+    modified: moment.Moment;
+}
+
+export async function getCreatedMoments(path: string): Promise<Map<string, StampInfo>>
+{
+    try
+    {
+        // Get time stamps
+        const stamps = await git.getStamps({
+            projectRootPath: path,
+        });
+
+        // Convert them to a map
+        const map = new Map<string, StampInfo>();
+        for(const key in stamps)
+        {
+            const created = stamps[key].created;
+            const modified = stamps[key].modified;
+            if(typeof created === "number" && typeof modified === "number") {
+                map.set(key, {
+                    created: moment(created*1000),
+                    modified: moment(modified*1000)
+                });
+            }
+        }
+
+        return map;
+    }
+    catch(err)
+    {
+        // Return an empty map
+        return new Map();
+    }
+}
+
 export async function getCreatedMoment(uri: vscode.Uri): Promise<moment.Moment>
 {
     // Get workspace folder and relative filename

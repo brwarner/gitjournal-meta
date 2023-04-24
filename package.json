@@ -19,6 +19,10 @@
       {
         "command": "gitjournal-metadata.add-created-date",
         "title": "Add Creation Date"
+      },
+      {
+        "command": "gitjournal.metadata.add-created-date-all",
+        "title": "Add GitJournal Dates from Git to All"
       }
     ],
     "configuration": {

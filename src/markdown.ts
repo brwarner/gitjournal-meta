@@ -10,10 +10,10 @@ const YAML_MATCHER = /^---\s+.+\s+---/s;
  * @param document Text document to parse
  * @returns Markdown content and parsed Yaml header
  */
-export function parseMarkdownDocument(document: vscode.TextDocument): { header: any, content: string }
+export function parseMarkdownDocument(document: vscode.TextDocument|string): { header: any, content: string }
 {
     // Get document text
-    const text = document.getText();
+    const text = typeof document === "string" ? document : document.getText();
 
     // Test it against our frontdown matcher
     const match = text.match(MARKDOWN_WITH_YAML_MATCHER);

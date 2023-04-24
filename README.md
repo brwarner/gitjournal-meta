@@ -14,6 +14,11 @@ The `created` field will only be updated if it does not exist. It'll be set to t
 
 The names of these fields and the file extensions they'll be added to can be configured in settings.
 
+## Commands
+
+* `Add Creation Date` will add the creation date from either git or the filesystem to the currently open file
+* `Add GitJournal Dates from Git to All` will request creation and modified date information from git for the entire workspace and add these dates to any files missing them. **Warning: This will open all the files for edit in your workspace.**
+
 ## Extension Settings
 
 * `gitjournal.metadata.enable` is the extension enabled (best to set this on a workspace-by-workspace basis)

@@ -2,7 +2,9 @@ import * as vscode from 'vscode';
 import { parseMarkdownDocument, writeYamlHeaderIntoDocument } from './markdown';
 import { getCreatedFieldName, getModifiedFieldName, isMetadataExtension, isMetadataEnabled } from './config';
 import * as moment from 'moment';
-import { getCreatedMoment } from './creation';
+import { getCreatedMoment, getCreatedMoments } from './creation';
+import * as fs from 'fs';
+import path = require('path');
 
 /** Extension entry point */
 export function activate(context: vscode.ExtensionContext) {
@@ -20,6 +22,44 @@ export function activate(context: vscode.ExtensionContext) {
 		header[getCreatedFieldName()] = formattedCreatedDate;
 		writeYamlHeaderIntoDocument(editor.document, header);
 
+	});
+	context.subscriptions.push(subscription);
+
+	// Register add creation date to all command
+	subscription = vscode.commands.registerCommand('gitjournal.metadata.add-created-date-all', async () => {
+		const CREATED = getCreatedFieldName();
+		const MODIFIED = getModifiedFieldName();
+
+		// Get workspace directory
+		const workspaceFolder = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+		if(!workspaceFolder) { return; }
+
+		// Get git timestamps for folder
+		const stamps = await getCreatedMoments(workspaceFolder);
+
+		// Iterate over paths found
+		for(const [filename, info] of stamps.entries())
+		{
+			// Ignore extensions we don't care about
+			if(!isMetadataExtension(filename)) { continue; }
+
+			// Open and read doc
+			// const text = await fs.promises.readFile(path.join(workspaceFolder, filename))
+			const doc = await vscode.workspace.openTextDocument(path.join(workspaceFolder, filename));
+			const { header } = parseMarkdownDocument(doc);
+
+			// Ignore if it already has a created header
+			if(CREATED in header && MODIFIED in header) { continue; }
+
+			// Otherwise, make an edit
+			if(!(CREATED in header)) {
+				header[CREATED] = info.created.format();
+			}
+			if(!(MODIFIED in header)) {
+				header[MODIFIED] = info.modified.format();
+			}
+			await writeYamlHeaderIntoDocument(doc, header);
+		}
 	});
 	context.subscriptions.push(subscription);
 
