@@ -1,0 +1,83 @@
+{
+  "name": "gitjournal-metadata",
+  "displayName": "gitjournal-metadata",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:plaintext",
+    "onLanguage:markdown"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitjournal-metadata.add-created-date",
+        "title": "Add Creation Date"
+      }
+    ],
+    "configuration": {
+      "title": "GitJournal Metadata",
+      "properties": {
+        "gitjournal.metadata.on": {
+          "type": "boolean",
+          "default": false,
+          "description": "If on, automatically add modified metadata to notes on save"
+        },
+        "gitjournal.metadata.extensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "md"
+          ],
+          "description": "File extensions to add modified metadata to on save"
+        },
+        "gitjournal.metadata.modifiedPropertyName": {
+          "type": "string",
+          "default": "modified",
+          "description": "Name of the YAML header property to save the modified date in"
+        },
+        "gitjournal.metadata.createdPropertyName": {
+          "type": "string",
+          "default": "created",
+          "description": "Name of the YAML header property to save the created date in"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "dependencies": {
+    "git-date-extractor": "^4.0.1",
+    "moment": "^2.29.4",
+    "yaml": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/moment": "^2.13.0",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.77.0",
+    "@types/yaml": "^1.9.7",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.36.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.9.5"
+  }
+}
