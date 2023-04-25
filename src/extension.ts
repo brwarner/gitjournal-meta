@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { parseMarkdownDocument, writeYamlHeaderIntoDocument } from './markdown';
 import { getCreatedFieldName, getModifiedFieldName, isMetadataExtension, isMetadataEnabled } from './config';
-import * as moment from 'moment';
+import moment from 'moment';
 import { getCreatedMoment, getCreatedMoments } from './creation';
 import * as fs from 'fs';
 import path = require('path');

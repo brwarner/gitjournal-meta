@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import * as moment from 'moment';
+import moment from 'moment';
 import * as git from 'git-date-extractor';
 import * as fs from 'fs';
 
