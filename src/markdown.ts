@@ -2,8 +2,8 @@ import * as vscode from 'vscode';
 import * as yaml from 'yaml';
 
 // Matches a markdown document with yaml front matter
-const MARKDOWN_WITH_YAML_MATCHER = /^---\s+(?<yaml>.+?)\s+---(?<markdown>.*)$/s;
-const YAML_MATCHER = /^---\s+.+\s+---/s;
+const MARKDOWN_WITH_YAML_MATCHER = /^---\s+(?<yaml>.+?)\n+---(?<markdown>.*)$/s;
+const YAML_MATCHER = /^---\s+.+?\n+---/s;
 
 /**
  * Given a text document, split out the yaml header and parse it
@@ -25,7 +25,7 @@ export function parseMarkdownDocument(document: vscode.TextDocument|string): { h
     }
 
     // Parse yaml
-    const parsedYaml = yaml.parse(match.groups['yaml']);
+    const parsedYaml = yaml.parse(match.groups['yaml'].trim());
 
     // Return
     return { 
