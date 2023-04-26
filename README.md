@@ -32,4 +32,5 @@ When using Save All, sometimes the extension will change the active text editor.
 
 ## Release Notes
 
-No releases yet.
+* **v0.0.4** Fixed issue with deleting tables: <https://github.com/brwarner/gitjournal-meta/issues/2>
+* **v0.0.3** Fixed crash due to improper moment.js import
